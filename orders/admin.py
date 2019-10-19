@@ -33,7 +33,7 @@ class OrderItemInline(admin.TabularInline):
     raw_id_fields = ['product']
 
 def order_detail(obj):
-    return mark_safe('<a href="{}">View</a>'.format(reverse('orders:admin_order_detail', args=[obj.id])))
+    return mark_safe("<a href='{}'>View</a>".format(reverse('orders:admin_order_detail', args=[obj.id])))
 
 
 @admin.register(Order)
