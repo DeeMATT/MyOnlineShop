@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -127,8 +128,23 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 CART_SESSION_ID = 'cart'
 
+# smtp config
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'emergingaptech@gmail.com'
 EMAIL_HOST_PASSWORD = 'GODisable4000'
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID = '745bff47q8bsg43z'      # Merchant ID
+BRAINTREE_PUBLIC_KEY = '976763x346jnrgcw'       # Public Key
+BRAINTREE_PRIVATE_KEY = '14b0a3005784db85ab1c3568fe749de7'      # Private Key
+
+from braintree import Configuration, Environment
+
+Configuration.configure(
+    Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
