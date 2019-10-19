@@ -25,12 +25,14 @@ def payment_process(request):
             order.save()
             return redirect('payment:done')
         else:
-            # generate token
-            client_token = braintree.ClientToken.generate()
-            return render(request,
-                        'payment/process.html',
-                        {'order': order,
-                        'client_token': client_token})
+            return redirect('payment:canceled')
+    else:
+        # generate token
+        client_token = braintree.ClientToken.generate()
+        return render(request,
+                    'payment/process.html',
+                    {'order': order,
+                    'client_token': client_token})
 
 def payment_done(request):
     return render(request, 'payment/done.html')
